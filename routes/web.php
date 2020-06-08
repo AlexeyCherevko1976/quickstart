@@ -13,7 +13,14 @@
 
 Route::get('/', function () {
     //return view('welcome');
-    return view('tasks');
+    //return view('tasks');
+
+    // k-6-16 21-15
+  $tasks = Task::orderBy('created_at', 'asc')->get();
+
+  return view('tasks', [
+    'tasks' => $tasks
+  ]);
 });
 
 /** app/Http/routes.php
