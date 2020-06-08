@@ -19,7 +19,10 @@ Route::get('/', function () {
 /** app/Http/routes.php
    * Добавить новую задачу 
    */
+// k-6-10
   Route::post('/task', function (Request $request) {
+
+  	// k-6-14
     $validator = Validator::make($request->all(), [
     'name' => 'required|max:255',
   	]);
@@ -30,7 +33,12 @@ Route::get('/', function () {
 	      ->withErrors($validator);
 	  }
 
-  // Создание задачи...
+// k-6-16
+    $task = new Task;
+  $task->name = $request->name;
+  $task->save();
+
+  return redirect('/');
   });
 
   /** app/Http/routes.php
